@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Gestione Cookie - Axeptio</title>
+</head>
+<body>
+
+    <h1>Benvenuto nel mio sito!</h1>
+    <p>Questo è un esempio di sito che utilizza il servizio di gestione dei cookie Axeptio.</p>
+
+    <!-- Il contenitore per visualizzare il consenso sui cookie -->
+    <div id="cookieConsentStatus"></div>
+
+    <!-- Aggiungi il tuo codice di gestione dei cookie qui -->
+    <script>
+    window.axeptioSettings = {
+        clientId: "678631786940a0d7b341cd5a",
+        cookiesVersion: "eleonora test-en-EU",
+    };
+
+    (function(d, s) {
+        var t = d.getElementsByTagName(s)[0], e = d.createElement(s);
+        e.async = true; e.src = "//static.axept.io/sdk.js";
+        t.parentNode.insertBefore(e, t);
+    })(document, "script");
+    </script>
+
+    <script>
+    // Funzione per visualizzare lo stato del consenso
+    function showCookieConsentStatus() {
+        const consentStatus = document.getElementById('cookieConsentStatus');
+        const axeptioCookies = window.Axeptio;
+        
+        if (axeptioCookies && axeptioCookies.getAcceptedCookies()) {
+            consentStatus.innerHTML = "<p>Hai accettato i cookie.</p>";
+        } else {
+            consentStatus.innerHTML = "<p>Non hai ancora accettato i cookie.</p>";
+        }
+    }
+
+    // Richiama la funzione per mostrare lo stato del consenso
+    window.addEventListener('load', function() {
+        showCookieConsentStatus();
+    });
+    </script>
+
+</body>
+</html>
