@@ -17,7 +17,7 @@ The SDK is customizable for both [brands](https://support.axeptio.eu/hc/en-gb/ar
 4. [ATT (App Tracking Transparency) Integration Note](#att-app-tracking-transparency-integration-note)
 5. [Responsibilities: Mobile App vs SDK](#responsibilities-mobile-app-vs-sdk)
 6. [Get Stored Consents](#get-stored-consents)
-7. [Show Consent Popup on Demand](#show-consent-popup-on-the-mand)
+7. [Show Consent Popup on Demand](#show-consent-popup-on-demand)
 
 
 
@@ -118,8 +118,8 @@ To manage ATT, you can use the [react-native-tracking-transparency](https://www.
 1. **Install the library**:
    You need to install the `react-native-tracking-transparency` library to handle ATT requests.
 
-   Using npm:
-   ```bash
+Using npm:
+```bash
    npm install --save react-native-tracking-transparency
  ```
 Or using yarn:
