@@ -2,6 +2,7 @@
   <img src="https://axeptio.imgix.net/2024/07/e444a7b2-ea3d-4471-a91c-6be23e0c3cbb.png" alt="Descrizione immagine" width="80" style="vertical-align: middle; margin-right: 10px;" />
   Axeptio React Native SDK Integration
 </h1>
+
 This repository demonstrates how to implement the **Axeptio React Native SDK** into your mobile applications to handle user consent for GDPR compliance and other privacy regulations.
 
 The SDK is customizable for both [brands](https://support.axeptio.eu/hc/en-gb/articles/30431504788753-Geolocation) and [publishers](https://support.axeptio.eu/hc/en-gb/articles/23671149708945-1-Create-the-project), depending on your use case and requirements.
