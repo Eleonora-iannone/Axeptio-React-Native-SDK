@@ -18,6 +18,10 @@ The SDK is customizable for both [brands](https://support.axeptio.eu/hc/en-gb/ar
 5. [Responsibilities: Mobile App vs SDK](#responsibilities-mobile-app-vs-sdk)
 6. [Get Stored Consents](#get-stored-consents)
 7. [Show Consent Popup on Demand](#show-consent-popup-on-demand)
+8. [Sharing Consents with Other Web Views](#sharing-consents-with-other-web-views)
+9. [Clear Users Consent Choices](#clear-users-consent-choices)
+10. [Events](#events)
+
 
 
 
@@ -198,5 +202,58 @@ const consentStatus = await AxeptioSDK.getConsentStatus();
 To access UserDefaults (iOS) or SharedPreferences (Android), you can utilize the [react-native-default-preference library](https://github.com/kevinresol/react-native-default-preference), which provides a unified interface for both platforms.
 
 # Show Consent Popup on Demand
+You can trigger the consent popup to open at any time during the app's lifecycle.
+To show the consent popup, use the following method:
+```java
+AxeptioSdk.showConsentScreen();
+```
 
+# Sharing Consents with Other Web Views
+This feature is available only for the **Publishers** service.
 
+The SDK provides a helper function to append the `axeptio_token` query parameter to any URL. You can either use the current user token stored in the SDK or pass a custom token.
+
+```java
+const token = await AxeptioSdk.getAxeptioToken();
+const url = await AxeptioSdk.appendAxeptioTokenURL(
+  'https://myurl.com',
+  token
+);
+
+// The resulting URL will be:
+// https://myurl.com?axeptio_token=[token]
+```
+
+# Clear Users Consent Choices
+To clear the consent choices stored by the SDK, use the following method:
+```java
+AxeptioSdk.clearConsent();
+```
+
+This will remove all the stored consent data.
+
+# Events
+The Axeptio SDK triggers various events to notify the app when the user has taken actions related to consent.
+
+To handle these events, you can add an `AxeptioEventListener`. This allows you to react to events such as the consent popup being closed or updates to Google Consent Mode.
+
+```java
+const listener: AxeptioEventListener = {
+  onPopupClosedEvent: () => {
+    // Retrieve consents from UserDefaults/SharedPreferences
+    // Check user preferences
+    // Run external processes/services based on user consents
+  },
+
+  onGoogleConsentModeUpdate: (_consents) => {
+    // Handle Google Consent V2 status update
+    // You can take further actions based on the consent state
+  },
+};
+
+// Add the listener to the Axeptio SDK
+AxeptioSDK.addListener(listener);
+```
+
+For more detailed information, you can visit the [Axeptio documentation](https://support.axeptio.eu/hc/en-gb ).
+We hope this guide helps you get started with the Axeptio React Native SDK. Good luck with your integration, and thank you for choosing Axeptio!
