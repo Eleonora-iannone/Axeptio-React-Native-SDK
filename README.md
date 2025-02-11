@@ -15,8 +15,10 @@ The SDK is customizable for both [brands](https://support.axeptio.eu/hc/en-gb/ar
    - [iOS Setup](#ios-setup)
 3. [Initialize the SDK on App Startup](#initialize-the-sdk-on-app-startup)
 4. [ATT (App Tracking Transparency) Integration Note](#att-app-tracking-transparency-integration-note)
-5. [Responsibilities: Mobile App vs SDK](#responsibilities:-mobile-app-vs-sdk)
+5. [Responsibilities: Mobile App vs SDK](#responsibilities-mobile-app-vs-sdk)
 6. [Get Stored Consents](#get-stored-consents)
+7. [Show Consent Popup on Demand](#show-consent-popup-on-the-mand)
+
 
 
 
@@ -194,4 +196,7 @@ To directly retrieve consent data using the **Axeptio SDK**, you can use the fol
 const consentStatus = await AxeptioSDK.getConsentStatus();
 ```
 To access UserDefaults (iOS) or SharedPreferences (Android), you can utilize the [react-native-default-preference library](https://github.com/kevinresol/react-native-default-preference), which provides a unified interface for both platforms.
+
+# Show Consent Popup on Demand
+
 
