@@ -15,6 +15,8 @@ The SDK is customizable for both [brands](https://support.axeptio.eu/hc/en-gb/ar
    - [iOS Setup](#ios-setup)
 3. [Initialize the SDK on App Startup](#initialize-the-sdk-on-app-startup)
 4. [ATT (App Tracking Transparency) Integration Note](#att-app-tracking-transparency-integration-note)
+5. [Responsibilities: Mobile App vs SDK](#responsibilities:-mobile-app-vs-sdk)
+6. [Get Stored Consents](#get-stored-consents)
 
 
 
@@ -106,6 +108,9 @@ Your app must comply with [Apple's guidelines](https://developer.apple.com/app-s
 
 To manage ATT, you can use the [react-native-tracking-transparency](https://www.npmjs.com/package/react-native-tracking-transparency) widget.
 
+- **ATT Flow**: Ensure that the ATT prompt is displayed to the user before you ask for consent in the Axeptio CMP. This ensures that you comply with Apple's privacy requirements.
+- **Apple's ATT Guidelines**: Make sure that you follow [Apple's ATT guidelines](https://developer.apple.com/documentation/apptrackingtransparency) for proper implementation.
+
 ## Steps to Integrate ATT:
 
 1. **Install the library**:
@@ -148,5 +153,45 @@ async function handleATT() {
   }
 }
 ```
+# 🧑‍💻Responsibilities: Mobile App vs SDK
+The **Axeptio SDK** and your mobile application have distinct responsibilities when it comes to managing user consent and tracking:
 
+## Mobile Application Responsibilities:
+- Implementing and managing the **App Tracking Transparency (ATT)** permission flow.
+- Deciding when to show the **ATT** prompt in relation to the **Axeptio CMP**.
+- Properly declaring data collection practices in **App Store privacy labels**.
+- Handling SDK events and updating app behavior based on user consent.
+
+## Axeptio SDK Responsibilities:
+- Displaying the consent management platform (**CMP**) interface.
+- Managing and storing user consent choices.
+- Sending consent status through APIs.
+
+> **Important**: The SDK does **not** automatically handle **ATT permissions**. These must be explicitly managed by the host application, as shown in the implementation examples above.
+
+# Get Stored Consents
+You can retrieve the consents that are stored by the **Axeptio SDK** in **UserDefaults** (iOS) or **SharedPreferences** (Android). This allows your app to access the consent status even after the app has been closed and reopened.
+
+## iOS (UserDefaults)
+For iOS, consents are stored in the **UserDefaults** system. You can use the standard `UserDefaults` API to access and retrieve the consent data.
+
+```swift
+// Example for retrieving consents in iOS
+let consentStatus = UserDefaults.standard.string(forKey: "axeptioConsentStatus")
+```
+
+## Android (SharedPreferences)
+For Android, consents are stored in **SharedPreferences**. You can access them using the standard `SharedPreferences` API to retrieve the stored consent status.
+```java
+// Example for retrieving consents in Android
+SharedPreferences prefs = context.getSharedPreferences("axeptio", Context.MODE_PRIVATE);
+String consentStatus = prefs.getString("axeptioConsentStatus", "default_value");
+```
+## Accessing Consent Status in SDK
+To directly retrieve consent data using the **Axeptio SDK**, you can use the following methods:
+```java
+// Example in JavaScript (React Native)
+const consentStatus = await AxeptioSDK.getConsentStatus();
+```
+To access UserDefaults (iOS) or SharedPreferences (Android), you can utilize the [react-native-default-preference library](https://github.com/kevinresol/react-native-default-preference), which provides a unified interface for both platforms.
 
