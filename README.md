@@ -8,26 +8,26 @@ This repository demonstrates how to implement the **Axeptio React Native SDK** i
 The SDK is customizable for both [brands](https://support.axeptio.eu/hc/en-gb/articles/30431504788753-Geolocation) and [publishers](https://support.axeptio.eu/hc/en-gb/articles/23671149708945-1-Create-the-project), depending on your use case and requirements.
 
 # 📑 Table of Contents
-1. [GitHub Access Token Setup](#github-access-token-setup)
-2. [Setup](#setup)
+1. [GitHub Access Token Setup](#1-github-access-token-setup)
+2. [Setup](#2-setup)
    - [Installation](#installation)
    - [Android Setup](#android-setup)
    - [iOS Setup](#ios-setup)
-3. [Initialize the SDK on App Startup](#initialize-the-sdk-on-app-startup)
-4. [ATT (App Tracking Transparency) Integration Note](#att-app-tracking-transparency-integration-note)
-5. [Responsibilities: Mobile App vs SDK](#responsibilities-mobile-app-vs-sdk)
-6. [Get Stored Consents](#get-stored-consents)
-7. [Show Consent Popup on Demand](#show-consent-popup-on-demand)
-8. [Sharing Consents with Other Web Views](#sharing-consents-with-other-web-views)
-9. [Clear Users Consent Choices](#clear-users-consent-choices)
-10. [Events](#events)
+3. [Initialize the SDK on App Startup](#3-initialize-the-sdk-on-app-startup)
+4. [ATT (App Tracking Transparency) Integration Note](#4-att-app-tracking-transparency-integration-note)
+5. [Responsibilities: Mobile App vs SDK](#5-responsibilities-mobile-app-vs-sdk)
+6. [Get Stored Consents](#6-get-stored-consents)
+7. [Show Consent Popup on Demand](#7-show-consent-popup-on-demand)
+8. [Sharing Consents with Other Web Views](#8-sharing-consents-with-other-web-views)
+9. [Clear Users Consent Choices](#9-clear-users-consent-choices)
+10. [Events](#10-events)
 
 
 
 
 
 ***
-# GitHub Access Token Setup
+# 1. GitHub Access Token Setup
 When setting up your project or accessing certain GitHub services, you may be prompted to create a GitHub Access Token. Please note that generating this token requires:
 - A valid **GitHub account**.
 - **Two-factor authentication (2FA)** enabled.
@@ -35,7 +35,7 @@ When setting up your project or accessing certain GitHub services, you may be pr
 To avoid authentication issues during setup, we recommend reviewing the [official GitHub Access Token Documentation](https://docs.github.com/en/authentication/keeping-your-account-and-data-secure/managing-your-personal-access-tokens) or detailed instructions on how to create your token and ensure 2FA is properly configured.
 Following these steps will help you generate a token smoothly and reduce onboarding friction.
 ***
-# 🔧Setup
+# 2. 🔧Setup
 ### Installation
 To install the **Axeptio React Native SDK**, run one of the following commands:
 ##### Using npm:
@@ -70,7 +70,7 @@ npx pod-install
 ```
 You can find a basic usage of the Axeptio SDK in the [example folder](https://github.com/axeptio/react-native-sdk/tree/master/example). Please check the folder for more detailed implementation examples.
 ***
-# 🚀Initialize the SDK on App Startup
+# 3. 🚀Initialize the SDK on App Startup
 To initialize the **Axeptio React Native SDK** in your app, you need to set it up when your application starts. The SDK can be configured for different use cases, such as brands or publishers, using the `AxeptioService` enum. This allows you to customize the SDK according to your specific needs (e.g., handling GDPR consent for brands or publishers).
 
 Here’s a step-by-step guide on how to initialize the SDK:
@@ -105,7 +105,7 @@ async function init() {
  - `optional_consent_token`: This token (if available) allows you to pass a previously stored consent token to restore the user's previous consent choices. This is optional, and you can skip it if it's not required.
 
 ***
-# ATT (App Tracking Transparency) Integration Note:
+# 4. ATT (App Tracking Transparency) Integration Note:
 
 The Axeptio SDK does not handle the user permission for tracking in the **App Tracking Transparency (ATT)** framework. It is the responsibility of your app to manage this permission and decide how the **Axeptio Consent Management Platform (CMP)** and the **ATT permission** should coexist.
 
@@ -160,7 +160,7 @@ async function handleATT() {
 }
 ```
 ***
-# 🧑‍💻Responsibilities: Mobile App vs SDK
+# 5. 🧑‍💻Responsibilities: Mobile App vs SDK
 The **Axeptio SDK** and your mobile application have distinct responsibilities when it comes to managing user consent and tracking:
 
 #### Mobile Application Responsibilities:
@@ -176,7 +176,7 @@ The **Axeptio SDK** and your mobile application have distinct responsibilities w
 
 > **Important**: The SDK does **not** automatically handle **ATT permissions**. These must be explicitly managed by the host application, as shown in the implementation examples above.
 ***
-# Get Stored Consents
+# 6. Get Stored Consents
 You can retrieve the consents that are stored by the **Axeptio SDK** in **UserDefaults** (iOS) or **SharedPreferences** (Android). This allows your app to access the consent status even after the app has been closed and reopened.
 
 ### iOS (UserDefaults)
@@ -202,14 +202,14 @@ const consentStatus = await AxeptioSDK.getConsentStatus();
 ```
 To access UserDefaults (iOS) or SharedPreferences (Android), you can utilize the [react-native-default-preference library](https://github.com/kevinresol/react-native-default-preference), which provides a unified interface for both platforms.
 ***
-# Show Consent Popup on Demand
+# 7. Show Consent Popup on Demand
 You can trigger the consent popup to open at any time during the app's lifecycle.
 To show the consent popup, use the following method:
 ```java
 AxeptioSdk.showConsentScreen();
 ```
 ***
-# Sharing Consents with Other Web Views
+# 8. Sharing Consents with Other Web Views
 This feature is available only for the **Publishers** service.
 
 The SDK provides a helper function to append the `axeptio_token` query parameter to any URL. You can either use the current user token stored in the SDK or pass a custom token.
@@ -225,7 +225,7 @@ const url = await AxeptioSdk.appendAxeptioTokenURL(
 // https://myurl.com?axeptio_token=[token]
 ```
 ***
-# Clear Users Consent Choices
+# 9. Clear Users Consent Choices
 To clear the consent choices stored by the SDK, use the following method:
 ```java
 AxeptioSdk.clearConsent();
@@ -233,7 +233,7 @@ AxeptioSdk.clearConsent();
 
 This will remove all the stored consent data.
 ***
-# Events
+# 10. Events
 The Axeptio SDK triggers various events to notify the app when the user has taken actions related to consent.
 
 To handle these events, you can add an `AxeptioEventListener`. This allows you to react to events such as the consent popup being closed or updates to Google Consent Mode.
