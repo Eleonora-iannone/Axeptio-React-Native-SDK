@@ -178,6 +178,7 @@ The **Axeptio SDK** and your mobile application have distinct responsibilities w
 - Sending consent status through APIs.
 
 > **Important**: The SDK does **not** automatically handle **ATT permissions**. These must be explicitly managed by the host application, as shown in the implementation examples above.
+
 <br><br><br>
 # 6. Get Stored Consents
 You can retrieve the consents that are stored by the **Axeptio SDK** in **UserDefaults** (iOS) or **SharedPreferences** (Android). This allows your app to access the consent status even after the app has been closed and reopened.
