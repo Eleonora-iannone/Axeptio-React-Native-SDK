@@ -3,6 +3,15 @@
   Axeptio React Native SDK Integration
 </h1>
 
+![License](https://img.shields.io/badge/license-Apache%202.0-blue.svg) ![PRs Welcome](https://img.shields.io/badge/PRs-welcome-brightgreen.svg) ![React Native Compatibility](https://img.shields.io/badge/React%20Native-%3E%3D%20065-blue) ![Android SDK](https://img.shields.io/badge/Android%20SDK-%3E%3D%2026-blue) ![iOS Version](https://img.shields.io/badge/iOS%20Versions-%3E%3D%2015-blue)
+
+
+
+
+
+
+
+
 This repository demonstrates how to implement the **Axeptio React Native SDK** into your mobile applications to handle user consent for GDPR compliance and other privacy regulations.
 
 The SDK is customizable for both brands and publishers, depending on your use case and requirements.
